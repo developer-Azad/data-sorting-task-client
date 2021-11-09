@@ -3,15 +3,22 @@ import PropTypes from 'prop-types';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { AppBar, Button, CssBaseline, Divider, Drawer, Grid, IconButton,
      List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { Box } from '@mui/system';
-import Calander from '../../Shared/Calander/Calander';
-import Appointments from '../Appointments/Appointments';
-import { Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch
+} from "react-router-dom";
+import DashboardHome from '../DashboardHome/DashboardHome'
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddDoctor from '../AddDoctor/AddDoctor';
 
 
 const drawerWidth = 200;
@@ -20,8 +27,8 @@ const Dashboard = (props) => {
 
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [date, setDate] = React.useState(new Date());
 
+    let { path, url } = useRouteMatch();
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
@@ -31,6 +38,9 @@ const Dashboard = (props) => {
         <Toolbar />
         <Divider />
         <Link to="/appointment"><Button color="inherit">Appointment</Button></Link>
+        <Link to={`${url}`}><Button color="inherit">Dahsboard</Button></Link>
+        <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
+        <Link to={`${url}/addDoctor`}><Button color="inherit">Add Doctor</Button></Link>
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
@@ -107,20 +117,19 @@ const Dashboard = (props) => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        <Typography paragraph>
-        <Grid container spacing={2}>
-        <Grid item xs={12} sm={12} md={5}>
-          <Calander
-          date={date}
-          setDate={setDate}
-          ></Calander>
-        </Grid>
-        <Grid item xs={12} sm={12} md={7}>
-          <Appointments date={date}></Appointments>
-        </Grid>
-      </Grid>
-        </Typography>
-       
+
+        <Switch>
+        <Route exact path={path}>
+        <DashboardHome></DashboardHome>
+        </Route>
+        <Route path={`${path}/makeAdmin`}>
+          <MakeAdmin></MakeAdmin>
+        </Route>
+        <Route path={`${path}/addDoctor`}>
+          <AddDoctor></AddDoctor>
+        </Route>
+      </Switch>
+      
       </Box>
     </Box>
     );
