@@ -1,4 +1,3 @@
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -43,9 +42,7 @@ const Navigation = () => {
             <NavLink style={{textDecoration: 'none', color: 'white'}} to="/login">
           <Button color="inherit">Login</Button>
           </NavLink>
-          
           }
-          
         </Toolbar>
       </AppBar>
     </Box>
