@@ -88,6 +88,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
                             defaultValue={time}
                             size="small"
                         />
+                        
                         <TextField
                             sx={{ width: '90%', m: 1 }}
                             id="outlined-size-small"
@@ -96,6 +97,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
                             defaultValue={user.displayName}
                             size="small"
                         />
+                        
                         <TextField
                             sx={{ width: '90%', m: 1 }}
                             id="outlined-size-small"

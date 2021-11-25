@@ -1,7 +1,9 @@
-# Getting Started with Create React App
+# Doctors Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+click here to visit our website [Create React App](https://doctors-portal-b415d.web.app).
 
-## Available Scripts
+## Features at a glance
 
-In the project directory, you can run:
+* complete appointment management portal with google login and email-password registration
+* Admin panel where admin can remove or add a doctor
+* complete payment system with card.
