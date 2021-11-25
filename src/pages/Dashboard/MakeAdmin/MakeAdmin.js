@@ -8,13 +8,14 @@ const MakeAdmin = () => {
     const [success, setSuccess] = useState(false);
     const {token} = useAuth();
 
+    console.log(token);
     const handleOnBlur = e => {
         setEmail(e.target.value);
     }
 
     const handleAdminSubmit = e => {
         const user = {email};
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://gentle-tor-92239.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,

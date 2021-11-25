@@ -24,7 +24,7 @@ const Navigation = () => {
             aria-label="menu"
             sx={{ mr: 2 }}
                 >
-               <MenuIcon />
+               <Link style={{color: 'white'}} to="/home"><MenuIcon /></Link>
              </IconButton>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Doctors Portal

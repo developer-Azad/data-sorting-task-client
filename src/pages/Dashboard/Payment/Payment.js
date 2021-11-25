@@ -13,7 +13,7 @@ const Payment = () => {
     const tax = appointment.price * 0.10;
 
     useEffect( () => {
-        fetch(`http://localhost:5000/appointments/${appointmentId}`)
+        fetch(`https://gentle-tor-92239.herokuapp.com/appointments/${appointmentId}`)
         .then(res => res.json())
         .then(data => setAppointment(data))
     }, [appointmentId]);

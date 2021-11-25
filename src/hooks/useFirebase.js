@@ -19,7 +19,7 @@ const useFirebase = () => {
   const googleProvider = new GoogleAuthProvider();
 
 
-    const registerUser = (email, password, name, history) => {
+    const registerUser = (email, password, name, navigate) => {
       setIsLoading(true);  
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -35,7 +35,7 @@ const useFirebase = () => {
             }).then(() => {
             }).catch((error) => {
             });
-            history.replace('/');
+            navigate('/');
           })
           .catch((error) => {
             // const errorCode = error.code;
@@ -45,12 +45,12 @@ const useFirebase = () => {
           .finally (() => setIsLoading(false));
     }
 
-    const loginUser = (email, password, location, history) => {
+    const loginUser = (email, password, location, navigate) => {
       setIsLoading(true);  
         signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const destination = location?.state?.from || '/';
-    history.replace(destination);
+    navigate(destination);
     setAuthError('');
   })
   .catch((error) => {
@@ -59,14 +59,15 @@ const useFirebase = () => {
   .finally (() => setIsLoading(false));
     }
 
-    const signInWithGoogle = (location, history) => {
+    const signInWithGoogle = (location, navigate) => {
       setIsLoading(true);  
       signInWithPopup(auth, googleProvider)
   .then((result) => {
-    setAuthError('');
     const user = result.user;
     saveUser(user.email, user.displayName, 'PUT');
-  
+    setAuthError('');
+    const destination = location?.state?.from || '/';
+    navigate(destination);
   }).catch((error) => {
     setAuthError(error.message);
   }).finally (() => setIsLoading(false));
@@ -90,7 +91,7 @@ const useFirebase = () => {
     }, [auth])
 
     useEffect(() => {
-      fetch(`http://localhost:5000/users/${user.email}`)
+      fetch(`https://gentle-tor-92239.herokuapp.com/users/${user.email}`)
       .then(res => res.json())
       .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -107,7 +108,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, method) =>{
       const user = {email, displayName};
-      fetch('http://localhost:5000/users', {
+      fetch('https://gentle-tor-92239.herokuapp.com/users', {
         method: method, 
         headers: {
           'content-type' : 'application/json'

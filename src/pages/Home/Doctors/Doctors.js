@@ -6,7 +6,7 @@ const Doctors = () => {
     const [doctors, setDoctors] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/doctors')
+        fetch('https://gentle-tor-92239.herokuapp.com/doctors')
         .then(res => res.json())
         .then(data => setDoctors(data))
     }, [])
@@ -18,6 +18,7 @@ const Doctors = () => {
             <Grid container spacing={2}>
                {
                    doctors.map(doctor => <Doctor
+                   key={doctor.name}
                    doctor={doctor}
                    >
 
