@@ -21,9 +21,9 @@ const style = {
 };
 
 const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBookingSuccess }) => {
-    const { name, time, price } = booking;
+    const { id, name, time, price } = booking;
     const { user } = useAuth();
-    const initialInfo = { patientName: user.displayName, email: user.email, phone: '' }
+    const initialInfo = { CustomerName: user.displayName, email: user.email,  address: '', phone: '' }
     const [bookingInfo, setBookingInfo] = useState(initialInfo);
 
     const handleOnBlur = e => {
@@ -38,9 +38,11 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
         // collect data
         const appointment = {
             ...bookingInfo,
+            id,
             time,
             price,
-            serviceName: name,
+            status: 'pending',
+            productName: name,
             date: date.toLocaleDateString()
         }
 
@@ -81,13 +83,6 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
                         {name}
                     </Typography>
                     <form onSubmit={handleBookingSubmit}>
-                        <TextField
-                            disabled
-                            sx={{ width: '90%', m: 1 }}
-                            id="outlined-size-small"
-                            defaultValue={time}
-                            size="small"
-                        />
                         
                         <TextField
                             sx={{ width: '90%', m: 1 }}
@@ -109,18 +104,20 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
                         <TextField
                             sx={{ width: '90%', m: 1 }}
                             id="outlined-size-small"
-                            name="phone"
+                            name="address"
                             onBlur={handleOnBlur}
-                            defaultValue="Phone Number"
+                            placeholder='Address'
                             size="small"
                         />
                         <TextField
-                            disabled
                             sx={{ width: '90%', m: 1 }}
                             id="outlined-size-small"
-                            defaultValue={date.toDateString()}
+                            name="phone"
+                            onBlur={handleOnBlur}
+                            placeholder='Phone Number'
                             size="small"
                         />
+                        
                         <Button type="submit" variant="contained">Submit</Button>
                     </form>
                 </Box>
