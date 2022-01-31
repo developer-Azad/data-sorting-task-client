@@ -4,17 +4,12 @@ import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import Banner from '../Banner/Banner';
 import Doctors from '../Doctors/Doctors';
 import Feature from '../Feature/Feature';
-import Services from '../Services/Services';
+import Login from '../../Login/Login/Login'
 
 const Home = () => {
     return (
         <div>
-            <Navigation></Navigation>
-            <Banner></Banner>
-            <Services></Services>
-            <Feature></Feature>
-            <AppointmentBanner></AppointmentBanner>
-            <Doctors></Doctors>
+            <Login></Login>
         </div>
     );
 };

@@ -16,6 +16,9 @@ import Payment from './pages/Dashboard/Payment/Payment';
 import MakeAdmin from './pages/Dashboard/MakeAdmin/MakeAdmin';
 import AddDoctor from './pages/Dashboard/AddDoctor/AddDoctor';
 import AdminRoute from './pages/Login/AdminRoute/AdminRoute';
+import Navigation from './pages/Shared/Navigation/Navigation';
+import Form from './pages/Form/Form';
+import AddedUser from './pages/AddedUser/AddedUser';
 
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
     <div className="App">
       <AuthProvider>
       <Router>
+        <Navigation></Navigation>
       <Routes>
           <Route path="/appointment" element={<PrivateRoute> 
             <Appointment /> 
@@ -51,6 +55,14 @@ function App() {
           <Route path="/login" element={ <Login />}>
           </Route>
           <Route path="/register" element={ <Register />}>
+          </Route>
+          <Route path="/form" element={ <PrivateRoute>
+              <Form />
+          </PrivateRoute>}>
+          </Route>
+          <Route path="/users" element={ <PrivateRoute>
+              <AddedUser />
+          </PrivateRoute>}>
           </Route>
         </Routes>
     </Router>

@@ -27,15 +27,16 @@ const Navigation = () => {
                <Link style={{color: 'white'}} to="/home"><MenuIcon /></Link>
              </IconButton>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Doctors Portal
+            Dashboard
           </Typography>
-          <Link  style={{textDecoration: 'none', color: 'white'}} to="/appointment"><Button color="inherit">Appointment</Button></Link>
+          <Link  style={{textDecoration: 'none', color: 'white'}} to="/form"><Button color="inherit">Add User</Button></Link>
+          <Link  style={{textDecoration: 'none', color: 'white'}} to="/users"><Button color="inherit">Total User</Button></Link>
           {
             user?.email ? 
             <Box>
           <Button onClick={logOut} color="inherit">Log out</Button>
           <NavLink style={{textDecoration: 'none', color: 'white'}} to="/dashboard">
-          <Button color="inherit">Dashboard</Button>
+          {/* <Button color="inherit">Dashboard</Button> */}
           </NavLink>
           </Box>
             :
